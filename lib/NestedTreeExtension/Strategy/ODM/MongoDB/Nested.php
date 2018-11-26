@@ -461,6 +461,11 @@ class Nested implements Strategy
                 $newRoot = $node;
             } else {
                 $newRoot = $wrapped->getIdentifier();
+
+                $identifierFieldType = $meta->fieldMappings[$identifierField]['type'];
+                if ($identifierFieldType === 'int' || $identifierFieldType === 'integer') {
+                    $newRoot = (int)$newRoot;
+                }
             }
         }
 
